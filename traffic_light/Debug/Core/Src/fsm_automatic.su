@@ -1,0 +1,4 @@
+fsm_automatic.c:13:6:updateBuffer	24	static
+fsm_automatic.c:23:6:Display7SEG	16	static
+fsm_automatic.c:119:6:update7SEG	16	static
+fsm_automatic.c:162:6:fsm_automatic_run	8	static

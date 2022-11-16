@@ -1,0 +1,20 @@
+/*
+ * global.c
+ *
+ *  Created on: Oct 27, 2022
+ *      Author: Hoang
+ */
+
+#include "global.h"
+int status = 0;
+int duration_red_LR_modify = 9;
+int duration_green_LR_modify = 6;
+int duration_yellow_LR_modify = 3;
+int duration_red_LR;
+int duration_red_UD;
+int duration_green_LR;
+int duration_green_UD;
+int duration_yellow_LR;
+int duration_yellow_UD;
+
+

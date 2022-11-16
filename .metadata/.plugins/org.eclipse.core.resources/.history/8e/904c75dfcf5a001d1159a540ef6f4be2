@@ -1,0 +1,47 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Oct 27, 2022
+ *      Author: Hoang
+ */
+#include "fsm_manual.h"
+int duration_for_red = 0;
+int index = 0;
+void fsm_manual_run(){
+	switch (status) {
+		case INIT1:
+			status = NORMAL_MODE;
+			setTimer1(200);
+		    break;
+		case NORMAL_MODE:
+			if(isButtonPressed2() == 1){
+				duration_for_red++;
+				updateClockBuffer(duration_for_red, 1);
+				if (timer2_flag == 1){
+					setTimer2(25);
+					update7SEG(index++);
+				}
+			}
+			break;
+		case RED_MODE:
+			if(isButtonPressed1() == 1){
+				status = YELLOW_MODE;
+			}
+		    break;
+		case YELLOW_MODE:
+			if(isButtonPressed1() == 1){
+				status = GREEN_MODE;
+			}
+			break;
+		case GREEN_MODE:
+			if(isButtonPressed1() == 1){
+				status = NORMAL_MODE;
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+
+

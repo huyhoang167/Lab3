@@ -1,0 +1,47 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Oct 27, 2022
+ *      Author: Hoang
+ */
+#include "fsm_manual.h"
+
+void fsm_manual_run(){
+	switch (status) {
+		case INIT1:
+			status = NORMAL_MODE;
+			setTimer1(2000);
+		    break;
+		case NORMAL_MODE:
+
+			if(isButtonPressed1() == 1){
+				status = RED_MODE;
+			}
+			else{
+				if(timer1_flag == 1){
+			       status = INIT2;
+				}
+			}
+			break;
+		case RED_MODE:
+			if(isButtonPressed1() == 1){
+				status = YELLOW_MODE;
+			}
+		    break;
+		case YELLOW_MODE:
+			if(isButtonPressed1() == 1){
+				status = GREEN_MODE;
+			}
+			break;
+		case GREEN_MODE:
+			if(isButtonPressed1() == 1){
+				status = NORMAL_MODE;
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+
+

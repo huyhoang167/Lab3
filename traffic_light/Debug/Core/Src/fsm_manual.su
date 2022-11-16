@@ -1,0 +1,4 @@
+fsm_manual.c:19:6:updateBuffer1	24	static
+fsm_manual.c:30:6:Display7SEG1	16	static
+fsm_manual.c:127:6:update7SEG1	16	static
+fsm_manual.c:167:6:fsm_manual_run	8	static

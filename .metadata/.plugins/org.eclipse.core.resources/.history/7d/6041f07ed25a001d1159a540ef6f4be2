@@ -1,0 +1,108 @@
+/*
+ * button.c
+ *
+ *  Created on: Oct 27, 2022
+ *      Author: Hoang
+ */
+#include"button.h"
+
+int KeyReg0 = NORMAL_STATE;
+int KeyReg1 = NORMAL_STATE;
+int KeyReg2 = NORMAL_STATE;
+int KeyReg3 = NORMAL_STATE;
+int button1_flag = 0;
+int button2_flag = 0;
+int button3_flag = 0;
+int TimeOutForKeyPress =  100;
+void subKeyProcess1(){
+	button1_flag = 1;
+}
+void subKeyProcess2(){
+	button2_flag = 1;
+}
+void subKeyProcess3(){
+	button3_flag = 1;
+}
+int isButtonPressed1(){
+	if (button1_flag == 1){
+		button1_flag = 0;
+		return 1;
+	}
+	return 0;
+}
+int isButtonPressed2(){
+	if (button2_flag == 1){
+		button2_flag = 0;
+		return 1;
+	}
+	return 0;
+}
+int isButtonPressed3(){
+	if (button3_flag == 1){
+		button3_flag = 0;
+		return 1;
+	}
+	return 0;
+}
+void getKeyInput1(){
+  KeyReg2 = KeyReg1;
+  KeyReg1 = KeyReg0;
+  KeyReg0 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
+  if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){
+    if (KeyReg2 != KeyReg3){
+      KeyReg3 = KeyReg2;
+
+      if (KeyReg3 == PRESSED_STATE){
+        TimeOutForKeyPress = 100;
+        subKeyProcess1();
+      }
+    }else{
+       TimeOutForKeyPress --;
+        if (TimeOutForKeyPress == 0){
+          KeyReg3 = NORMAL_STATE;
+        }
+    }
+  }
+}
+void getKeyInput2(){
+  KeyReg2 = KeyReg1;
+  KeyReg1 = KeyReg0;
+  KeyReg0 = HAL_GPIO_ReadPin(Button2_GPIO_Port, Button2_Pin);
+  if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){
+    if (KeyReg2 != KeyReg3){
+      KeyReg3 = KeyReg2;
+
+      if (KeyReg3 == PRESSED_STATE){
+        TimeOutForKeyPress = 100;
+        subKeyProcess2();
+      }
+    }else{
+       TimeOutForKeyPress --;
+        if (TimeOutForKeyPress == 0){
+          KeyReg3 = NORMAL_STATE;
+        }
+    }
+  }
+}
+void getKeyInput3(){
+  KeyReg2 = KeyReg1;
+  KeyReg1 = KeyReg0;
+  KeyReg0 = HAL_GPIO_ReadPin(Button3_GPIO_Port, Button3_Pin);
+  if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){
+    if (KeyReg2 != KeyReg3){
+      KeyReg3 = KeyReg2;
+
+      if (KeyReg3 == PRESSED_STATE){
+        TimeOutForKeyPress = 100;
+        subKeyProcess3();
+      }
+    }else{
+       TimeOutForKeyPress --;
+        if (TimeOutForKeyPress == 0){
+          KeyReg3 = NORMAL_STATE;
+        }
+    }
+  }
+}
+
+
